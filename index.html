@@ -281,15 +281,28 @@
     margin-top: 3.5rem;
     padding-top: 1.75rem;
     border-top: 1px solid var(--line);
+  }
+  footer .sign {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
+    line-height: 1.22;
+    color: var(--accent-strong);
+    text-wrap: balance;
+    margin: 0 0 1.5rem;
+  }
+  footer .sign::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 1rem;
+  }
+  footer .fineprint {
     color: var(--ink-faint);
     font-size: .9rem;
-  }
-  footer p { margin-bottom: .7rem; }
-  footer .sign {
-    font-family: "Fraunces", Georgia, serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--ink-soft);
+    margin: 0;
   }
 
   /* theme toggle */
@@ -477,8 +490,8 @@
   </section>
 
   <footer>
-    <p>Это личный гид для поддержки, а не медицинская программа и не замена консультации врача. При боли, кровотечении, признаках диастаза, после кесарева сечения или осложнённых родов — сначала поговори с врачом или специалистом по восстановлению.</p>
     <p class="sign">Начни с одного пункта. Сегодня этого хватит.</p>
+    <p class="fineprint">Это личный гид для поддержки, а не медицинская программа и не замена консультации врача. При боли, кровотечении, признаках диастаза, после кесарева сечения или осложнённых родов — сначала поговори с врачом или специалистом по восстановлению.</p>
   </footer>
 
 </main>
