@@ -1,0 +1,505 @@
+<title>Форма в декрете</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;450;500;600;700&display=swap">
+
+<style>
+  :root {
+    --ground: #F5F7F2;
+    --surface: #FFFFFF;
+    --surface-2: #EEF2E9;
+    --ink: #2C382F;
+    --ink-soft: #57625A;
+    --ink-faint: #8A938A;
+    --line: #DCE3D8;
+    --accent: #5E8F6E;
+    --accent-strong: #497A59;
+    --accent-wash: #E4EEE3;
+    --shadow: 0 1px 2px rgba(44, 56, 47, .05), 0 14px 34px -18px rgba(44, 56, 47, .18);
+    --radius: 14px;
+    --measure: 40rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #181E1A;
+      --surface: #202722;
+      --surface-2: #28312B;
+      --ink: #E7EBE4;
+      --ink-soft: #A8B2A8;
+      --ink-faint: #79837A;
+      --line: #333D36;
+      --accent: #8FBF9E;
+      --accent-strong: #A8D2B4;
+      --accent-wash: #25332A;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 16px 38px -20px rgba(0, 0, 0, .55);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #181E1A;
+    --surface: #202722;
+    --surface-2: #28312B;
+    --ink: #E7EBE4;
+    --ink-soft: #A8B2A8;
+    --ink-faint: #79837A;
+    --line: #333D36;
+    --accent: #8FBF9E;
+    --accent-strong: #A8D2B4;
+    --accent-wash: #25332A;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 16px 38px -20px rgba(0, 0, 0, .55);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: clamp(1.5rem, 5vw, 3.25rem) clamp(1.15rem, 5vw, 1.75rem) 4rem;
+  }
+
+  h1, h2, h3 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    color: var(--ink);
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 6.5vw, 3rem);
+    line-height: 1.12;
+    margin: 0 0 .85rem;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 1.85rem);
+    line-height: 1.2;
+    margin: 0 0 .5rem;
+  }
+
+  h3 {
+    font-size: 1.115rem;
+    font-weight: 600;
+    font-family: "Hanken Grotesk", sans-serif;
+    letter-spacing: 0;
+    margin: 0 0 .3rem;
+  }
+
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent-strong); }
+
+  .eyebrow {
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin: 0 0 .9rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .eyebrow::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: var(--line);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { margin-bottom: 2.5rem; }
+  .hero .lede {
+    font-size: 1.18rem;
+    color: var(--ink-soft);
+    max-width: 34rem;
+    margin-bottom: 0;
+  }
+
+  /* ---------- Start today card ---------- */
+  .today {
+    margin: 2rem 0 2.75rem;
+    background: var(--accent-wash);
+    border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem 1.5rem;
+  }
+  .today h2 {
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: .9rem;
+  }
+  .today ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .6rem; }
+  .today li {
+    display: flex;
+    gap: .7rem;
+    align-items: baseline;
+    line-height: 1.5;
+  }
+  .today li::before {
+    content: "";
+    flex: none;
+    width: .5rem;
+    height: .5rem;
+    margin-top: .5rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .today .note {
+    margin: 1rem 0 0;
+    font-size: .95rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ---------- Jump nav ---------- */
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 3rem;
+  }
+  .jump a {
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: .4rem .85rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: color .15s, border-color .15s, background .15s;
+  }
+  .jump a:hover, .jump a:focus-visible {
+    color: var(--accent-strong);
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+
+  /* ---------- Sections ---------- */
+  section { margin-bottom: 3.5rem; scroll-margin-top: 1.5rem; }
+  section > .intro {
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  .stack { display: grid; gap: .9rem; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    box-shadow: var(--shadow);
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .card p { color: var(--ink-soft); font-size: .99rem; margin-bottom: 0; }
+  .card p + p { margin-top: .4rem; }
+
+  /* exercise rows */
+  .move {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .35rem .9rem;
+    align-items: baseline;
+  }
+  .move .name { font-weight: 600; color: var(--ink); }
+  .move .dose {
+    font-variant-numeric: tabular-nums;
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    color: var(--accent-strong);
+    background: var(--accent-wash);
+    padding: .12rem .55rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .move .how {
+    grid-column: 1 / -1;
+    color: var(--ink-soft);
+    font-size: .96rem;
+  }
+
+  /* plain list with leaf ticks */
+  ul.ticks { margin: 0; padding: 0; list-style: none; display: grid; gap: .7rem; }
+  ul.ticks li { display: flex; gap: .75rem; align-items: baseline; }
+  ul.ticks li::before {
+    content: "";
+    flex: none;
+    width: 7px;
+    height: 7px;
+    margin-top: .55rem;
+    border-radius: 2px 6px 2px 6px;
+    background: var(--accent);
+    transform: rotate(-8deg);
+  }
+  ul.ticks strong { color: var(--ink); font-weight: 600; }
+
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--surface-2);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.05rem 1.25rem;
+    margin-top: 1.4rem;
+  }
+  .callout h3 { margin-bottom: .35rem; }
+  .callout p { margin-bottom: 0; color: var(--ink-soft); font-size: .99rem; }
+
+  .safe {
+    margin-top: 1.1rem;
+    font-size: .96rem;
+  }
+  .safe summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent-strong);
+    list-style: none;
+  }
+  .safe summary::-webkit-details-marker { display: none; }
+  .safe summary::before { content: "＋ "; font-weight: 700; }
+  .safe[open] summary::before { content: "－ "; }
+  .safe[open] summary { margin-bottom: .6rem; }
+  .safe p { color: var(--ink-soft); margin-bottom: 0; }
+
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-faint);
+    font-size: .9rem;
+  }
+  footer p { margin-bottom: .7rem; }
+  footer .sign {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+
+  /* theme toggle */
+  .toggle {
+    position: fixed;
+    top: .85rem;
+    right: .85rem;
+    z-index: 10;
+    background: var(--surface);
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: .4rem .8rem;
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .toggle:hover { color: var(--accent-strong); border-color: var(--accent); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  @media print {
+    .toggle, .jump { display: none; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .card, .today, .callout { box-shadow: none; break-inside: avoid; }
+    section { break-inside: avoid; }
+  }
+</style>
+
+<button class="toggle" id="themeToggle" type="button" aria-label="Переключить тему">Тема</button>
+
+<main class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Гид для себя</p>
+    <h1>Быть в форме в декрете — несложно</h1>
+    <p class="lede">Не про строгие диеты, спортзал и час свободного времени, которого нет. Про несколько простых привычек, к которым можно спокойно возвращаться — в любой день и с любого места.</p>
+  </header>
+
+  <section class="today" aria-label="С чего начать сегодня">
+    <h2>Начни сегодня — что-то одно</h2>
+    <ul>
+      <li>Поставь бутылку воды туда, где кормишь и где готовишь.</li>
+      <li>Сделай 10 приседаний, пока греется еда.</li>
+      <li>Добавь белок в завтрак — яйца, творог или йогурт.</li>
+    </ul>
+    <p class="note">Одного пункта достаточно. Это уже начало, а не «полдела».</p>
+  </section>
+
+  <nav class="jump" aria-label="Разделы">
+    <a href="#pitanie">Питание</a>
+    <a href="#dvizhenie">Движение</a>
+    <a href="#plusy">Что это даёт</a>
+    <a href="#podderzhka">Мышление и поддержка</a>
+  </nav>
+
+  <section id="pitanie">
+    <p class="eyebrow">Питание</p>
+    <h2>Простые принципы, без диет и запретов</h2>
+    <p class="intro">Ничего не нужно считать и взвешивать. Цель — есть достаточно и регулярно, чтобы хватало сил, а вечером не тянуло сметать всё подряд.</p>
+
+    <div class="stack">
+      <div class="card">
+        <h3>Белок в каждый приём пищи</h3>
+        <p>Яйца, творог, курица, рыба, бобовые. Дольше держит сытость, и меньше тянет на сладкое между делами.</p>
+      </div>
+      <div class="card">
+        <h3>Тарелка «на глаз»</h3>
+        <p>Половина — овощи или фрукты, четверть — белок, четверть — крупа, картофель или хлеб. Без весов и приложений.</p>
+      </div>
+      <div class="card">
+        <h3>Не оставайся голодной надолго</h3>
+        <p>Пропущенный завтрак и «весь день на кофе» почти всегда оборачиваются перееданием вечером. Ровное питание днём — лучшая защита от срывов.</p>
+      </div>
+      <div class="card">
+        <h3>Держи под рукой быстрый перекус</h3>
+        <p>Орехи, йогурт, фрукт, сыр, цельнозерновой хлебец. Что-то, что можно съесть одной рукой и не чувствовать вину.</p>
+      </div>
+      <div class="card">
+        <h3>Вода рядом с местом кормления</h3>
+        <p>Днём «голод» часто оказывается жаждой и усталостью. Стакан воды до перекуса — простая проверка.</p>
+      </div>
+      <div class="card">
+        <h3>Сладкое не под запретом</h3>
+        <p>Правило «сначала нормально поем, потом десерт» работает лучше полного отказа. Запретов нет — есть порядок.</p>
+      </div>
+      <div class="card">
+        <h3>Готовь с запасом</h3>
+        <p>Двойная порция ужина — это готовый обед на завтра. Меньше готовки в дни, когда на неё нет ни минуты.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="dvizhenie">
+    <p class="eyebrow">Движение</p>
+    <h2>10–15 минут в день, без зала</h2>
+    <p class="intro">Мини-набор, который делается дома, часто с ребёнком рядом. Не обязательно всё сразу — выбирай два-три пункта на день.</p>
+
+    <div class="stack">
+      <div class="card move">
+        <span class="name">Приседания</span>
+        <span class="dose">2 × 10</span>
+        <span class="how">Можно держась за опору или с ребёнком на руках как утяжелением.</span>
+      </div>
+      <div class="card move">
+        <span class="name">Подъём таза лёжа («мостик»)</span>
+        <span class="dose">2 × 12</span>
+        <span class="how">Мягко возвращает тонус после родов, разгружает поясницу.</span>
+      </div>
+      <div class="card move">
+        <span class="name">Отжимания от стены или дивана</span>
+        <span class="dose">2 × 8</span>
+        <span class="how">Чем выше опора, тем легче. Со временем опору можно понижать.</span>
+      </div>
+      <div class="card move">
+        <span class="name">Ходьба с коляской в бодром темпе</span>
+        <span class="dose">10–20 мин</span>
+        <span class="how">Полноценная нагрузка. Считается за тренировку, отдельно ничего делать не нужно.</span>
+      </div>
+      <div class="card move">
+        <span class="name">«Кошка-корова» и лёгкая скрутка лёжа</span>
+        <span class="dose">3–5 мин</span>
+        <span class="how">Для спины, которая устаёт от наклонов над кроваткой.</span>
+      </div>
+      <div class="card move">
+        <span class="name">Растяжка шеи, спины, груди</span>
+        <span class="dose">3–5 мин</span>
+        <span class="how">Особенно после кормлений и ношения на руках.</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>Как встроить это в день</h3>
+      <p>Привяжи движение к тому, что уже происходит: пока греется еда, во время игры на коврике, сразу после первого дневного сна. Отдельное «время на спорт» искать не нужно.</p>
+    </div>
+
+    <details class="safe">
+      <summary>Бережно к себе: пара ограничений</summary>
+      <p>В первые месяцы — без прыжков и резких рывков. Если было кесарево или есть диастаз, начинай с дыхания и мягких подъёмов таза, а планку и скрутки отложи и согласуй с врачом. Больно, тянет или появились выделения — останавливаемся, это сигнал сбавить темп, а не терпеть.</p>
+    </details>
+  </section>
+
+  <section id="plusy">
+    <p class="eyebrow">Что это даёт</p>
+    <h2>Зачем вообще эти привычки</h2>
+    <p class="intro">Отдача заметна не на весах, а в самочувствии — обычно в первые пару недель.</p>
+
+    <ul class="ticks">
+      <li><span><strong>Больше энергии днём.</strong> Недосып переносится легче, когда тело двигается и получает достаточно еды.</span></li>
+      <li><span><strong>Ровнее настроение.</strong> Движение и регулярная еда влияют на тревогу и раздражительность сильнее, чем кажется.</span></li>
+      <li><span><strong>Крепче спина.</strong> Меньше боли от наклонов, ношения и кормлений в неудобной позе.</span></li>
+      <li><span><strong>Возвращается ощущение «тело снова моё»</strong> — а не только инструмент для ухода за ребёнком.</span></li>
+      <li><span><strong>Пример для ребёнка</strong> складывается сам собой, без специальных усилий.</span></li>
+      <li><span><strong>Это 15 минут для себя,</strong> которые окупаются весь оставшийся день.</span></li>
+    </ul>
+  </section>
+
+  <section id="podderzhka">
+    <p class="eyebrow">Мышление и поддержка</p>
+    <h2>Про сроки, срывы и сравнения</h2>
+    <p class="intro">Это часть плана, а не необязательное дополнение. Отношение к процессу решает больше, чем конкретные упражнения.</p>
+
+    <ul class="ticks">
+      <li><span><strong>Восстановление — это месяцы, а не недели.</strong> Тело менялось девять месяцев; дай ему столько же обратно. Это норма, а не медлительность.</span></li>
+      <li><span><strong>Пропуск — это пропуск, а не провал.</strong> Пропущенная неделя или день на печенье ничего не ломают. Возвращаешься со следующего приёма пищи или следующего дня — без «отработок» и наказаний.</span></li>
+      <li><span><strong>Не сравнивай себя с другими мамами.</strong> У всех разные роды, сон, помощь и стартовые данные. В соцсетях видно чужую витрину, а не усталость за кадром.</span></li>
+      <li><span><strong>Делать что-то одно — уже достаточно.</strong> Только вода, только прогулка, только пять минут растяжки. Регулярное «немного» работает, «идеально, но никогда» — нет.</span></li>
+      <li><span><strong>Просить помощи — это не эгоизм.</strong> 15 минут на себя делают тебя спокойнее рядом с ребёнком. Это вложение, а не то, что ты «отняла».</span></li>
+    </ul>
+
+    <div class="callout">
+      <h3>План на плохой день</h3>
+      <p>Стакан воды, короткая прогулка, лечь спать пораньше. Всё. В такие дни это и есть выполненная норма.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Это личный гид для поддержки, а не медицинская программа и не замена консультации врача. При боли, кровотечении, признаках диастаза, после кесарева сечения или осложнённых родов — сначала поговори с врачом или специалистом по восстановлению.</p>
+    <p class="sign">Начни с одного пункта. Сегодня этого хватит.</p>
+  </footer>
+
+</main>
+
+<script>
+  (function () {
+    var btn = document.getElementById("themeToggle");
+    var root = document.documentElement;
+    var saved;
+    try { saved = localStorage.getItem("guide-theme"); } catch (e) {}
+    if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+
+    function current() {
+      var attr = root.getAttribute("data-theme");
+      if (attr) return attr;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    btn.addEventListener("click", function () {
+      var next = current() === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("guide-theme", next); } catch (e) {}
+    });
+  })();
+</script>
